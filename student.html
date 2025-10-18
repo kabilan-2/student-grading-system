@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Marks</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Student Marks</h1>
+    <div id="studentData"></div>
+    <br /><br /><br />
+    <button onclick="logout()" id="logout">Logout</button>
+    <script>
+      const student = JSON.parse(localStorage.getItem("student"));
+      if (student) {
+        document.getElementById("studentData").innerHTML = `
+        <h3>Name: ${student.name}<br>Roll Number: ${student.rollNo}</h3>
+        <table border="1" style="margin:auto;"">
+            <br>
+          <tr ><th style="padding:10px;">Subject</th><th style="padding:10px;">Marks</th></tr>
+          ${student.subjects
+            .map((s) => `<tr><td>${s.subjectName}</td><td>${s.marks}</td></tr>`)
+            .join("")}
+        </table>
+      `;
+      } else {
+        window.location.href = "index.html";
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

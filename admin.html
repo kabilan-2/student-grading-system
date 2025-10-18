@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+    <input id="rollNo" placeholder="Roll No">
+    <input id="name" placeholder="Student Name">
+    <input id="dob" type="date">
+    <h3>Enter Subject Marks</h3>
+
+    <div id="subjects"></div>
+    
+    <button type="button" onclick="addSubject()">+ Add Subject</button>
+    <button type="button" onclick="uploadMarks()">Upload Marks</button>
+    <button onclick="window.location.href='viewall.html'">View All Marks</button>
+    <button onclick="logout()" id="logout">Logout</button>
+</div>
+
+<script>
+  document.getElementById("viewAllMarksBtn").addEventListener("click", () => {
+    window.location.href = "viewall.html";
+  });
+
+    function addSubject() {
+        const subjects = document.getElementById('subjects');
+        const index = subjects.children.length + 1;
+        const row = document.createElement('div');
+        row.className = 'subject-row';
+        // keep length/size similar to the original inputs by setting explicit widths
+        row.innerHTML = `
+            <input type="text" name="subjectName${index}" placeholder="Subject Name" style="width:260px;">
+            <input type="number" name="marks${index}" placeholder="Marks" min="0" max="100" style="width:80px;">
+            <button type="button" class="remove" onclick="this.parentElement.remove()" style="margin-left:8px;">Remove</button>
+        `;
+
+        subjects.appendChild(row);
+    }
+
+    // Optional: a simple uploadMarks stub if not defined in script.js
+    function uploadMarks() {
+        const rollNo = document.getElementById('rollNo').value;
+        const name = document.getElementById('name').value;
+        const dob = document.getElementById('dob').value;
+        const subjects = Array.from(document.querySelectorAll('.subject-row')).map((row) => {
+            return {
+                subject: row.querySelector('input[type="text"]').value,
+                marks: row.querySelector('input[type="number"]').value
+            };
+        });
+        console.log({ rollNo, name, dob, subjects });
+        alert('Marks prepared for upload (check console).');
+    }
+</script>
+
+  <script src="script.js"></script>
+</body>
+</html>

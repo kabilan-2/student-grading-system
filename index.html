@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Student Grading System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Student Grading System</h1>
+  
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <input id="adminUser" placeholder="User ID">
+    <input id="adminPass" type="password" placeholder="Password">
+    <button onclick="adminLogin()">Login as Admin</button>
+  </div>
+
+  <div class="login-container">
+    <h2>Student Login</h2>
+    <input id="rollNo" placeholder="Roll No">
+    <input id="dob" type="date">
+    <button onclick="studentLogin()">Login as Student</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
